@@ -11,6 +11,7 @@ const ItemSchema = new mongoose.Schema({
     stock: Number,
     abbreviation: String,
     styleNo: Number,
+    url: String,
   }],
 });
 

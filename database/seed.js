@@ -1,4 +1,3 @@
-const { seed } = require('faker');
 const faker = require('faker');
 const Model = require('./items');
 
