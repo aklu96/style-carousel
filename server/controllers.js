@@ -11,5 +11,5 @@ const getItems = (req, res) => {
 };
 
 module.exports = {
-  getItems, getImages,
+  getItems,
 };

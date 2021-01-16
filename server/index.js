@@ -9,6 +9,6 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/items', controllers.getItems);
+app.get('/api/items', controllers.getItems);
 
 app.listen(PORT);
