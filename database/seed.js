@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const faker = require('faker');
 const Model = require('./items');
 
