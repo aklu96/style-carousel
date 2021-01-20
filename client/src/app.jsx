@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React from 'react';
+import styled from 'styled-components';
 import MainCarousel from './mainCarousel';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: { name: null, styles: [] },
+      currentItem: { name: null, styles: [] },
       items: [],
     };
   }
@@ -15,7 +16,7 @@ class App extends React.Component {
     axios.get('http://localhost:3000/api/items')
       .then((items) => {
         this.setState({
-          current: items.data[0],
+          currentItem: items.data[0],
           items: items.data,
         });
       })
@@ -25,9 +26,13 @@ class App extends React.Component {
   }
 
   render() {
+    const { currentItem } = this.state;
+    const { name } = currentItem;
+    const { styles } = currentItem;
+
     return (
       <div>
-        <MainCarousel name={this.state.current.name} styles={this.state.current.styles} />
+        <MainCarousel name={name} styles={styles} />
       </div>
     );
   }
