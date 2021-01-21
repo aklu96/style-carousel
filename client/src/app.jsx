@@ -7,11 +7,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentItem: { name: null, styles: [] },
+      currentItem: { start: 0, name: null, styles: [] },
       focus: [],
       items: [],
     };
-    // this.nextItem = this.nextItem.bind(this);
+    this.changeFocus = this.changeFocus.bind(this);
   }
 
   componentDidMount() {
@@ -25,12 +25,33 @@ class App extends React.Component {
             currentItem.styles[0],
             currentItem.styles[1],
           ],
-          items: items.data
+          items: items.data,
         });
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  changeFocus() {
+    const { currentItem } = this.state;
+    const { items } = this.state;
+    let { start, name, styles } = currentItem;
+    start += 1;
+    const max = styles.length - 1;
+    this.setState({
+      currentItem: {
+        start,
+        name,
+        styles,
+      },
+      focus: [
+        styles[start % max],
+        styles[(start + 1) % max],
+        styles[(start + 2) % max],
+      ],
+      items,
+    });
   }
 
   render() {

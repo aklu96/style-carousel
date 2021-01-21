@@ -9,9 +9,6 @@ const ProdS = styled.span`
   font-size: 25px;
   line-height: 35px;
   transform: translateX(-50%);
-  &:nth-child(3) {
-    display: none;
-  }
 `;
 
 const CImg = styled.img`
@@ -21,9 +18,12 @@ const CImg = styled.img`
   transform: translateX(-50%);
 `;
 
-const Item = ({ product }) => {
+const Item = ({ product, index }) => {
   const { url } = product;
-  const { styleName } = product;
+  let { styleName } = product;
+  if (index !== 1) {
+    styleName = '';
+  }
   return (
     <div>
       <CImg src={url} alt="Product" />
