@@ -11,10 +11,17 @@ const Prod = styled.h1`
   line-height: 48.5px;
 `;
 
-const MainCarousel = ({ name, prev, main, next }) => (
+const Row = styled.div`
+  display: flex;
+  overflow: hidden;
+`;
+
+const MainCarousel = ({ name, focus }) => (
   <div>
     <Prod>{ name }</Prod>
-    <Item prev={prev} main={main} next={next} />
+    <Row>
+      {focus.map((product) => <Item product={product} />)}
+    </Row>
   </div>
 );
 

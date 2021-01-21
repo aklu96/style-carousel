@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ProdS = styled.span`
+  display: flex;
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
   justify-content: center;
@@ -20,22 +21,14 @@ const CImg = styled.img`
   transform: translateX(-50%);
 `;
 
-const Row = styled.div`
-  display: flex;
-  overflow: hidden;
-`;
-
-const Item = ({ prev, main, next }) => {
-  const prevUrl = prev.url;
-  const mainUrl = main.url;
-  const nextUrl = next.url;
-
+const Item = ({ product }) => {
+  const { url } = product;
+  const { styleName } = product;
   return (
-    <Row>
-      <CImg src={prevUrl} alt="Product" />
-      <CImg src={mainUrl} alt="Product" />
-      <CImg src={nextUrl} alt="Product" />
-    </Row>
+    <div>
+      <CImg src={url} alt="Product" />
+      <ProdS>{ styleName }</ProdS>
+    </div>
   );
 };
 

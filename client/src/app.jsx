@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentItem: { name: null, styles: [] },
-      focus: { prev: {}, main: {}, next: {} },
+      focus: [],
       items: [],
     };
     // this.nextItem = this.nextItem.bind(this);
@@ -20,11 +20,11 @@ class App extends React.Component {
         const currentItem = items.data[0];
         this.setState({
           currentItem,
-          focus: {
-            prev: currentItem.styles[currentItem.styles.length - 1],
-            main: currentItem.styles[0],
-            next: currentItem.styles[1],
-          },
+          focus: [
+            currentItem.styles[currentItem.styles.length - 1],
+            currentItem.styles[0],
+            currentItem.styles[1],
+          ],
           items: items.data
         });
       })
@@ -36,12 +36,10 @@ class App extends React.Component {
   render() {
     const { currentItem, focus } = this.state;
     const { name } = currentItem;
-    const { prev, main, next } = focus;
-    console.log(prev);
 
     return (
       <div>
-        <MainCarousel name={name} prev={prev} main={main} next={next} />
+        <MainCarousel name={name} focus={focus} />
       </div>
     );
   }
