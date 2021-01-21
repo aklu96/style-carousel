@@ -17,22 +17,25 @@ const CImg = styled.img`
   width: 950px;
   height: 950px;
   transition: 1s all ease;
-  &:first-child {
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  transform: translateX(-50%);
 `;
 
-const Item = ({ style, childNum }) => {
-  const { styleName } = style;
-  const { url } = style;
+const Row = styled.div`
+  display: flex;
+  overflow: hidden;
+`;
+
+const Item = ({ prev, main, next }) => {
+  const prevUrl = prev.url;
+  const mainUrl = main.url;
+  const nextUrl = next.url;
+
   return (
-    <div>
-      <CImg src={url} alt="Product" />
-      <ProdS>
-        { styleName }
-      </ProdS>
-    </div>
+    <Row>
+      <CImg src={prevUrl} alt="Product" />
+      <CImg src={mainUrl} alt="Product" />
+      <CImg src={nextUrl} alt="Product" />
+    </Row>
   );
 };
 

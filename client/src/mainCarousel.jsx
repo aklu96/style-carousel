@@ -2,10 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Item from './item';
 
-const Row = styled.div`
-  display: flex;
-  overflow: hidden;
-  `;
 const Prod = styled.h1`
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
@@ -15,12 +11,10 @@ const Prod = styled.h1`
   line-height: 48.5px;
 `;
 
-const MainCarousel = ({ name, focus }) => (
+const MainCarousel = ({ name, prev, main, next }) => (
   <div>
     <Prod>{ name }</Prod>
-    <Row>
-      { styles.map((style) => <Item url={style.url} /> <Info /> />)}
-    </Row>
+    <Item prev={prev} main={main} next={next} />
   </div>
 );
 
