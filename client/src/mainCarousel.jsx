@@ -15,10 +15,10 @@ const Slider = styled.div`
   display: flex;
   position: absolute;
   width: fit-content;
-  transition: transform .6s ease-in;
+  transition: transform .4s ease-in;
   transform: translateX(-${
   (props) => {
-    let rotate = 800 * props.index;
+    const rotate = 800 * props.index;
     return rotate + 450;
   }
 }px);

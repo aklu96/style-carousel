@@ -2,18 +2,20 @@ import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
 import MainCarousel from './mainCarousel';
+import MiniPreview from './miniPreview';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentItem: {
-        id: null, name: null, styles: [],
+        id: null, name: null, styles: [{url: ''}],
       },
       items: [],
       index: 0,
       numOfItems: 0,
       addToLeft: 0,
+      itemCopy: [],
     };
     this.navRight = this.navRight.bind(this);
     this.navLeft = this.navLeft.bind(this);
@@ -24,13 +26,13 @@ class App extends React.Component {
       .then((items) => {
         const currentItem = items.data[0];
         const numOfItems = currentItem.styles.length - 1;
-        console.log(numOfItems);
+        const itemCopy = currentItem.styles.slice(0);
         this.setState({
           currentItem,
+          itemCopy,
           items: items.data,
           index: 0,
           numOfItems,
-          addToLeft: numOfItems,
           direction: null,
         });
       })
@@ -40,7 +42,7 @@ class App extends React.Component {
   }
 
   navRight() {
-    let { currentItem, index, direction } = this.state;
+    let { currentItem, index, direction, itemCopy } = this.state;
     let { styles } = currentItem;
     styles.push(styles[index % styles.length]);
     index += 1;
@@ -49,20 +51,14 @@ class App extends React.Component {
       index,
       currentItem,
       direction,
+      itemCopy,
     });
   }
 
   navLeft() {
     let {
-      currentItem, index, addToLeft, numOfItems, direction,
+      currentItem, index, numOfItems, direction,
     } = this.state;
-    let { styles } = currentItem;
-    // styles.unshift(styles[(index + addToLeft - 1)] % styles.length);
-    // addToLeft -= 1;
-    // direction = 'left';
-    // if (addToLeft < 0) {
-    //   addToLeft = numOfItems;
-    // }
     if (index !== 0) {
       index -= 1;
     }
@@ -74,11 +70,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentItem, index, direction } = this.state;
+    const { currentItem, index, direction, itemCopy } = this.state;
     const { name, styles } = currentItem;
     return (
       <div>
         <MainCarousel name={name} styles={styles} index={index} navRight={this.navRight} navLeft={this.navLeft} direction={direction} />
+        <MiniPreview itemCopy={itemCopy} />
       </div>
     );
   }
