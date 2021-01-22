@@ -8,7 +8,6 @@ const ProdS = styled.span`
   justify-content: center;
   font-size: 25px;
   line-height: 35px;
-  transform: translateX(-50%);
 `;
 
 const CImg = styled.img`
@@ -16,16 +15,14 @@ const CImg = styled.img`
   height: 800px;
 `;
 
-const Item = ({ style, i }) => {
+const Item = ({ style }) => {
   const { url } = style;
-  let { styleName } = style;
-  if (i !== 1) {
-    styleName = '';
-  }
+  let { styleName, price } = style;
   return (
     <div>
-      <CImg src={url} alt="Product" />
       <ProdS>{ styleName }</ProdS>
+      <ProdS>${ price }</ProdS>
+      <CImg src={url} alt="Product" />
     </div>
   );
 };

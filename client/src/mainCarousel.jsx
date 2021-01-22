@@ -18,8 +18,8 @@ const Slider = styled.div`
   transition: transform .6s ease-in;
   transform: translateX(-${
   (props) => {
-    const amount = 800 * props.index;
-    return amount + 450;
+    let rotate = 800 * props.index;
+    return rotate + 450;
   }
 }px);
 `;
@@ -35,8 +35,9 @@ const Row = styled.div`
 const LeftArrowWrapper = styled.button`
   display: flex;
   position: absolute;
+  outline: none;
   border-width: 0px;
-  top: 550px;
+  top: 500px;
   left: 20px;
   align-items: center;
   justify-content: center;
@@ -44,7 +45,6 @@ const LeftArrowWrapper = styled.button`
   width: 44px;
   background-color: #fff;
   border-radius: 50%;
-  transition: background-color .2s cubic-bezier(.235,0,.05,.95),box-shadow .2s ease-in-out;
   z-index: 3;
   cursor: pointer;
 `;
@@ -52,16 +52,16 @@ const LeftArrowWrapper = styled.button`
 const RightArrowWrapper = styled.button`
   display: flex;
   position: absolute;
+  outline: none;
   border-width: 0px;
-  top: 550px;
-  left: 97%;
+  top: 500px;
+  left: 96%;
   align-items: center;
   justify-content: center;
   height: 44px;
   width: 44px;
   background-color: #fff;
   border-radius: 50%;
-  transition: background-color .2s cubic-bezier(.235,0,.05,.95),box-shadow .2s ease-in-out;
   z-index: 3;
   cursor: pointer;
 `;
@@ -84,14 +84,14 @@ const ArrowRight = styled.div`
   z-index: 3;
 `;
 
-const MainCarousel = ({ name, styles, navRight, index }) => (
+const MainCarousel = ({ name, styles, navRight, navLeft, index, direction }) => (
   <div>
     <Prod>{ name }</Prod>
-    <LeftArrowWrapper><ArrowLeft /></LeftArrowWrapper>
+    <LeftArrowWrapper onClick={navLeft}><ArrowLeft /></LeftArrowWrapper>
     <RightArrowWrapper onClick={navRight}><ArrowRight /></RightArrowWrapper>
     <Row>
-      <Slider index={index}>
-        {styles.map((style, i) => <Item style={style} i={i} />)}
+      <Slider index={index} direction={direction}>
+        {styles.map((style) => <Item style={style} />)}
       </Slider>
     </Row>
   </div>
