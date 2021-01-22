@@ -12,16 +12,14 @@ const ProdS = styled.span`
 `;
 
 const CImg = styled.img`
-  width: 950px;
-  height: 950px;
-  transition: 1s all ease;
-  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
 `;
 
-const Item = ({ product, index }) => {
-  const { url } = product;
-  let { styleName } = product;
-  if (index !== 1) {
+const Item = ({ style, i }) => {
+  const { url } = style;
+  let { styleName } = style;
+  if (i !== 1) {
     styleName = '';
   }
   return (

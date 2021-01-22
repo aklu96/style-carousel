@@ -7,25 +7,23 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentItem: { start: 0, name: null, styles: [] },
-      focus: [],
+      currentItem: {
+        id: null, name: null, styles: [],
+      },
       items: [],
+      index: 0,
     };
-    this.changeFocus = this.changeFocus.bind(this);
+    this.navRight = this.navRight.bind(this);
   }
 
   componentDidMount() {
     axios.get('http://localhost:3000/api/items')
       .then((items) => {
-        const currentItem = items.data[0];
+        let currentItem = items.data[0];
         this.setState({
           currentItem,
-          focus: [
-            currentItem.styles[currentItem.styles.length - 1],
-            currentItem.styles[0],
-            currentItem.styles[1],
-          ],
           items: items.data,
+          index: 0,
         });
       })
       .catch((err) => {
@@ -33,34 +31,23 @@ class App extends React.Component {
       });
   }
 
-  changeFocus() {
-    const { currentItem } = this.state;
-    const { items } = this.state;
-    let { start, name, styles } = currentItem;
-    start += 1;
-    const max = styles.length - 1;
+  navRight() {
+    let { currentItem, index } = this.state;
+    let { styles } = currentItem;
+    styles.push(styles[index % styles.length]);
+    index += 1;
     this.setState({
-      currentItem: {
-        start,
-        name,
-        styles,
-      },
-      focus: [
-        styles[start % max],
-        styles[(start + 1) % max],
-        styles[(start + 2) % max],
-      ],
-      items,
+      index,
+      currentItem,
     });
   }
 
   render() {
-    const { currentItem, focus } = this.state;
-    const { name } = currentItem;
-
+    const { currentItem, index } = this.state;
+    const { name, styles } = currentItem;
     return (
       <div>
-        <MainCarousel name={name} focus={focus} />
+        <MainCarousel name={name} styles={styles} index={index} navRight={this.navRight} />
       </div>
     );
   }
