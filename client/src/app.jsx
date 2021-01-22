@@ -16,6 +16,9 @@ class App extends React.Component {
       numOfItems: 0,
       addToLeft: 0,
       itemCopy: [],
+      selected: {
+        name: null,
+      },
     };
     this.navRight = this.navRight.bind(this);
     this.navLeft = this.navLeft.bind(this);
@@ -27,9 +30,13 @@ class App extends React.Component {
         const currentItem = items.data[0];
         const numOfItems = currentItem.styles.length - 1;
         const itemCopy = currentItem.styles.slice(0);
+        const first = itemCopy.splice(0, 1);
+        itemCopy.push(first[0]);
+        const selected = itemCopy[0];
         this.setState({
           currentItem,
           itemCopy,
+          selected,
           items: items.data,
           index: 0,
           numOfItems,
@@ -57,7 +64,7 @@ class App extends React.Component {
 
   navLeft() {
     let {
-      currentItem, index, numOfItems, direction,
+      currentItem, index, direction,
     } = this.state;
     if (index !== 0) {
       index -= 1;
@@ -70,12 +77,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentItem, index, direction, itemCopy } = this.state;
+    const { currentItem, index, itemCopy, direction, selected } = this.state;
     const { name, styles } = currentItem;
     return (
       <div>
         <MainCarousel name={name} styles={styles} index={index} navRight={this.navRight} navLeft={this.navLeft} direction={direction} />
-        <MiniPreview itemCopy={itemCopy} />
+        <MiniPreview itemCopy={itemCopy} selected={selected} />
       </div>
     );
   }

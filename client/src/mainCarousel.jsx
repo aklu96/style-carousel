@@ -19,7 +19,7 @@ const Slider = styled.div`
   transform: translateX(-${
   (props) => {
     const rotate = 800 * props.index;
-    return rotate + 450;
+    return rotate + 300;
   }
 }px);
 `;
