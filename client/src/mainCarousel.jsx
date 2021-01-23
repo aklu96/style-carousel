@@ -2,31 +2,34 @@ import React from 'react';
 import styled from 'styled-components';
 import Item from './item';
 
+const MCWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+`;
+
 const Prod = styled.h1`
+  display: flex;
   font-family: 'Roboto', sans-serif;
   font-weight: bold 900;
-  display: flex;
   justify-content: center;
   font-size: 50px;
   line-height: 48.5px;
 `;
 
-const Slider = styled.div`
+const Slider = styled.span`
   display: flex;
-  position: absolute;
-  width: fit-content;
   transition: transform .4s ease-in;
   transform: translateX(-${
   (props) => {
-    const rotate = 800 * props.index;
-    return rotate + 300;
+    const rotate = 900 * props.index;
+    return rotate + 430;
   }
 }px);
 `;
 
-const Row = styled.div`
+const Row = styled.span`
   display: flex;
-  position: absolute;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -85,7 +88,7 @@ const ArrowRight = styled.div`
 `;
 
 const MainCarousel = ({ name, styles, navRight, navLeft, index, direction, selected }) => (
-  <div>
+  <MCWrapper>
     <Prod>{ name }</Prod>
     <LeftArrowWrapper onClick={navLeft}><ArrowLeft /></LeftArrowWrapper>
     <RightArrowWrapper onClick={navRight}><ArrowRight /></RightArrowWrapper>
@@ -94,7 +97,7 @@ const MainCarousel = ({ name, styles, navRight, navLeft, index, direction, selec
         {styles.map((style) => <Item style={style} selected={selected} />)}
       </Slider>
     </Row>
-  </div>
+  </MCWrapper>
 );
 
 export default MainCarousel;

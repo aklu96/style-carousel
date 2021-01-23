@@ -4,6 +4,14 @@ import styled from 'styled-components';
 import MainCarousel from './mainCarousel';
 import MiniPreview from './miniPreview';
 
+const AWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
+  justify-content: space-between;
+  background-color: #F6F6F6;
+`;
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -88,10 +96,10 @@ class App extends React.Component {
     const { currentItem, index, itemCopy, direction, selected } = this.state;
     const { name, styles } = currentItem;
     return (
-      <div>
+      <AWrap>
         <MainCarousel name={name} styles={styles} selected={selected} index={index} navRight={this.navRight} navLeft={this.navLeft} direction={direction} />
         <MiniPreview itemCopy={itemCopy} selected={selected} />
-      </div>
+      </AWrap>
     );
   }
 }

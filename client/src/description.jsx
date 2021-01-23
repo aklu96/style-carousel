@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const DescWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+`;
+
 const ProdS = styled.span`
-  top: -40px;
   display: flex;
   position: relative;
   font-family: 'Roboto', sans-serif;
@@ -35,14 +40,14 @@ const Description = ({ selected }) => {
   let { price, styleName, color, styleNo, abbreviation } = selected;
   abbreviation = (styleName + ' |').slice(0, 3).toUpperCase();
   return (
-    <div>
+    <DescWrapper>
       <ProdS>
         <StyleInfo>{styleName}: {color}</StyleInfo>
       </ProdS>
       <ProdS>
       <StyleAbr>{abbreviation}</StyleAbr> <StyleAbr>StyleNo: {styleNo}</StyleAbr> <StyleAbr>${price}</StyleAbr>
       </ProdS>
-    </div>
+    </DescWrapper>
   );
 };
 
