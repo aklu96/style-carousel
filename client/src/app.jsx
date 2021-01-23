@@ -42,6 +42,7 @@ class App extends React.Component {
           numOfItems,
           direction: null,
         });
+        console.log(selected);
       })
       .catch((err) => {
         console.log(err);
@@ -59,20 +60,27 @@ class App extends React.Component {
       currentItem,
       direction,
       itemCopy,
+      selected: styles[(index + 1) % (styles.length)],
     });
   }
 
   navLeft() {
     let {
-      currentItem, index, direction,
+      currentItem, index, direction, selected,
     } = this.state;
+    let { styles } = currentItem;
+    if (styles.length > 6) {
+      styles.pop(styles[index % styles.length]);
+    }
     if (index !== 0) {
       index -= 1;
     }
+    selected = styles[(index + 1) % (styles.length)];
     this.setState({
       currentItem,
       index,
       direction,
+      selected,
     });
   }
 
@@ -81,7 +89,7 @@ class App extends React.Component {
     const { name, styles } = currentItem;
     return (
       <div>
-        <MainCarousel name={name} styles={styles} index={index} navRight={this.navRight} navLeft={this.navLeft} direction={direction} />
+        <MainCarousel name={name} styles={styles} selected={selected} index={index} navRight={this.navRight} navLeft={this.navLeft} direction={direction} />
         <MiniPreview itemCopy={itemCopy} selected={selected} />
       </div>
     );

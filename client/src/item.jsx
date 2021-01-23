@@ -6,9 +6,8 @@ const CImg = styled.img`
   height: 800px;
 `;
 
-const Item = ({ style }) => {
+const Item = ({ style, selected }) => {
   const { url } = style;
-  let { styleName, price } = style;
   return (
     <div>
       <CImg src={url} alt="Product" />

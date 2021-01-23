@@ -4,7 +4,7 @@ import Item from './item';
 
 const Prod = styled.h1`
   font-family: 'Roboto', sans-serif;
-  font-weight: 900;
+  font-weight: bold 900;
   display: flex;
   justify-content: center;
   font-size: 50px;
@@ -84,14 +84,14 @@ const ArrowRight = styled.div`
   z-index: 3;
 `;
 
-const MainCarousel = ({ name, styles, navRight, navLeft, index, direction }) => (
+const MainCarousel = ({ name, styles, navRight, navLeft, index, direction, selected }) => (
   <div>
     <Prod>{ name }</Prod>
     <LeftArrowWrapper onClick={navLeft}><ArrowLeft /></LeftArrowWrapper>
     <RightArrowWrapper onClick={navRight}><ArrowRight /></RightArrowWrapper>
     <Row>
       <Slider index={index} direction={direction}>
-        {styles.map((style) => <Item style={style} />)}
+        {styles.map((style) => <Item style={style} selected={selected} />)}
       </Slider>
     </Row>
   </div>
