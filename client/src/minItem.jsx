@@ -7,6 +7,7 @@ const MinImg = styled.img`
   width: 100px;
   height: 100px;
   margin: 10px;
+  cursor: pointer;
 `;
 
 const MinItem = ({ style, selected }) => {

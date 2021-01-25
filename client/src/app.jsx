@@ -92,6 +92,10 @@ class App extends React.Component {
     });
   }
 
+  navRightMini() {
+
+  }
+
   render() {
     const { currentItem, index, itemCopy, direction, selected } = this.state;
     const { name, styles } = currentItem;
