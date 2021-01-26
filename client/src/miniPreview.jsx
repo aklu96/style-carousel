@@ -68,7 +68,7 @@ const ATB = styled.button`
   cursor: pointer;
 `;
 
-const MiniPreview = ({ itemCopy, styles, selected, miniNav, clicked, toggleClicked, currentItemCopy }) => {
+const MiniPreview = ({styles, selected, miniNav, clicked, toggleClicked, currentItemCopy }) => {
   const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
   let added = 'Add to Bag';
   if (clicked) {

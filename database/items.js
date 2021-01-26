@@ -15,6 +15,16 @@ const ItemSchema = new mongoose.Schema({
   }],
 });
 
-const Items = mongoose.model('Items', ItemSchema);
+const BagSchema = new mongoose.Schema({
+  bag: [{
+    styleName: String,
+    size: String,
+  }],
+});
 
-module.exports = Items;
+const Items = mongoose.model('Items', ItemSchema);
+const Bag = mongoose.model('Bag', BagSchema);
+
+module.exports = {
+  Items, Bag,
+};

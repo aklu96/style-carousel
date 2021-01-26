@@ -8,6 +8,8 @@ const AWrap = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   justify-content: space-between;
   background-color: #F6F6F6;
@@ -24,8 +26,6 @@ class App extends React.Component {
       styleAdjust: 0,
       numOfItems: 0,
       size: null,
-      itemCopy: [],
-
       currentItemCopy: [],
       clicked: false,
       selected: {
@@ -44,21 +44,18 @@ class App extends React.Component {
       .then((items) => {
         let currentItem = items.data[0];
         const numOfItems = currentItem.styles.length;
-        const itemCopy = currentItem.styles.slice(0);
         const currentItemCopy = currentItem.styles.slice(0);
-        const first = itemCopy.splice(0, 1);
-        itemCopy.push(first[0]);
-        const selected = itemCopy[0];
+        const selected = currentItemCopy[1];
         this.setState({
           currentItem,
           currentItemCopy,
-          itemCopy,
           selected,
           items: items.data,
           index: 1,
           styleAdjust: 0,
           numOfItems,
           direction: null,
+          clicked: false,
         });
       })
       .catch((err) => {
@@ -68,10 +65,10 @@ class App extends React.Component {
 
   navRight() {
     let {
-      currentItem, index, direction, itemCopy,
+      currentItem, index, direction, clicked,
     } = this.state;
+    clicked = false;
     const { styles } = currentItem;
-    // styles.push(styles[index % styles.length]);
     let currentIndex = this.findSelectedIndex();
     if (currentIndex === 2) {
       currentItem.styles = currentItem.styles.concat(styles);
@@ -82,16 +79,17 @@ class App extends React.Component {
       index,
       currentItem,
       direction,
-      itemCopy,
       selected: styles[(index) % (styles.length)],
+      clicked,
     });
   }
 
   navLeft() {
     let {
-      currentItem, index, direction, selected,
+      currentItem, index, direction, selected, clicked,
     } = this.state;
     const { styles } = currentItem;
+    clicked = false;
     if (styles.length > 6) {
       styles.pop(styles[index % styles.length]);
     }
@@ -104,6 +102,7 @@ class App extends React.Component {
       index,
       direction,
       selected,
+      clicked,
     });
   }
 
@@ -118,8 +117,10 @@ class App extends React.Component {
   }
 
   miniNav(i) {
-    let { index, numOfItems, currentItem, styleAdjust, currentItemCopy, selected } = this.state;
+    let { index, selected, clicked } = this.state;
+    const { numOfItems, currentItem, currentItemCopy } = this.state;
     let { styles } = currentItem;
+    clicked = false;
     if (i > (index % numOfItems)) {
       index += (i - (index % numOfItems));
       selected = styles[(index)];
@@ -130,7 +131,9 @@ class App extends React.Component {
     if (i === 5) {
       currentItem.styles = currentItem.styles.concat(currentItemCopy);
     }
-    this.setState({ index, currentItem, styleAdjust, selected });
+    this.setState({
+      index, currentItem, selected, clicked,
+    });
   }
 
   toggleClicked() {
@@ -143,8 +146,7 @@ class App extends React.Component {
 
   render() {
     const {
-      currentItem, index, itemCopy, direction, selected, styleAdjust, clicked, size,
-      currentItemCopy,
+      currentItem, index, direction, selected, styleAdjust, clicked, size, currentItemCopy,
     } = this.state;
     const { name, styles } = currentItem;
     return (
@@ -161,7 +163,6 @@ class App extends React.Component {
         />
         <MiniPreview
           currentItemCopy={currentItemCopy}
-          itemCopy={itemCopy}
           selected={selected}
           clicked={clicked}
           size={size}

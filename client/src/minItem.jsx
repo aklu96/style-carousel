@@ -18,12 +18,10 @@ const SelectWrapper = styled.div`
 const CheckMark = styled.div`
   display: inline-block;
   transform: rotate(45deg);
-  height: 20px;
-  width: 10px;
-  border-bottom: 7px #ffff;
-  border-right: 7px #ffff;
-  border-width: 7px;
-  border-color: 7px;
+  height: 12px;
+  width: 6px;
+  border-bottom: 4px solid #ffff;
+  border-right: 4px solid #ffff;
 `;
 
 const CheckWrapper = styled.button`
@@ -52,13 +50,12 @@ const MinItem = ({ style, selected, miniNav, i }) => {
         <MinImg src={url} onClick={() => { miniNav(i); }} />
       </SelectWrapper>
     );
-  } else {
-    return (
-      <div>
-        <MinImg src={url} onClick={() => { miniNav(i); }} />
-      </div>
-    );
   }
+  return (
+    <div>
+      <MinImg src={url} onClick={() => { miniNav(i); }} />
+    </div>
+  );
 };
 
 export default MinItem;
