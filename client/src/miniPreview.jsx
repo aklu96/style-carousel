@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import MinItem from './minItem';
 import Description from './description';
 
@@ -33,7 +33,7 @@ const SizeButton = styled.button`
   justify-content: center;
   height: 55px;
   width: 55px;
-  background-color: #fff;
+  background-color: #ffff;
   border-radius: 50%;
   z-index: 3;
   cursor: pointer;
@@ -68,20 +68,24 @@ const ATB = styled.button`
   cursor: pointer;
 `;
 
-const MiniPreview = ({ itemCopy, selected }) => {
+const MiniPreview = ({ itemCopy, styles, selected, miniNav, clicked, toggleClicked, currentItemCopy }) => {
   const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-  return(
+  let added = 'Add to Bag';
+  if (clicked) {
+    added = 'Added';
+  }
+  return (
     <MinWrap>
       <Desc>
         <Description selected={selected} />
       </Desc>
       <Row>
-        {itemCopy.map((style) => <MinItem style={style} selected={selected} />)}
+        {currentItemCopy.map((style, i) => <MinItem style={style} selected={selected} miniNav={miniNav} i={i} />)}
       </Row>
       <Row>
-        {sizes.map((size, i) => <SizeButton>{sizes[i]}</SizeButton>)}
+        {sizes.map((size, i) => <SizeButton onclick={() => { chooseSize(i) }} size={size} i={i} >{sizes[i]}</SizeButton>)}
       </Row>
-      <ATBWrapper><ATB>Add to Bag</ATB></ATBWrapper>
+      <ATBWrapper><ATB onClick={toggleClicked}>{added}</ATB></ATBWrapper>
     </MinWrap>
   );
 };
