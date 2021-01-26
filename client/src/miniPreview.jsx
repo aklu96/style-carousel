@@ -37,11 +37,23 @@ const SizeButton = styled.button`
   border-radius: 50%;
   z-index: 3;
   cursor: pointer;
+  &:focus {
+    background-color: #f69e83;
+    color: solid white;
+  }
+`;
+
+const sizeText = styled.div`
+  color: black;
   font-family: 'Roboto', sans-serif;
   font-weight: bold 900;
   justify-content: center;
   font-size: 16px;
   line-height: 16x;
+  cursor: pointer;
+  &:focus {
+    color: solid white;
+  }
 `;
 
 const ATBWrapper = styled.div`
@@ -68,7 +80,7 @@ const ATB = styled.button`
   cursor: pointer;
 `;
 
-const MiniPreview = ({styles, selected, miniNav, clicked, toggleClicked, currentItemCopy }) => {
+const MiniPreview = ({ selected, miniNav, clicked, toggleClicked, currentItemCopy }) => {
   const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
   let added = 'Add to Bag';
   if (clicked) {
@@ -83,7 +95,7 @@ const MiniPreview = ({styles, selected, miniNav, clicked, toggleClicked, current
         {currentItemCopy.map((style, i) => <MinItem style={style} selected={selected} miniNav={miniNav} i={i} />)}
       </Row>
       <Row>
-        {sizes.map((size, i) => <SizeButton onclick={() => { chooseSize(i) }} size={size} i={i} >{sizes[i]}</SizeButton>)}
+        {sizes.map((size, i) => <SizeButton onclick={() => { chooseSize(i) }} size={size} i={i} ><sizeText>{sizes[i]}</sizeText></SizeButton>)}
       </Row>
       <ATBWrapper><ATB onClick={toggleClicked}>{added}</ATB></ATBWrapper>
     </MinWrap>

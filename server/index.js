@@ -13,6 +13,6 @@ app.use(express.json());
 
 app.get('/api/items', controllers.getItems);
 
-app.post('/api/items/:styleName', controllers.addToBag);
+app.post('/api/items/:styleName/:size', controllers.addToBag);
 
 app.listen(PORT);

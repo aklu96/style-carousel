@@ -70,7 +70,7 @@ class App extends React.Component {
     clicked = false;
     const { styles } = currentItem;
     let currentIndex = this.findSelectedIndex();
-    if (currentIndex === 2) {
+    if (currentIndex > 3) {
       currentItem.styles = currentItem.styles.concat(styles);
     }
     index += 1;
