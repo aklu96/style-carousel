@@ -8,6 +8,10 @@ const MinImg = styled.img`
   height: 100px;
   margin: 10px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    transform:scale(1.2);
+  }
 `;
 
 const SelectWrapper = styled.div`

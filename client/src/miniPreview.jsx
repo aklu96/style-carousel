@@ -40,6 +40,10 @@ const SizeButton = styled.button`
   &:focus {
     background-color: #f69e83;
     color: solid white;
+  };
+  &:hover {
+    background-color: #f69e83;
+    color: solid white;
   }
 `;
 

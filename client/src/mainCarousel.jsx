@@ -23,7 +23,6 @@ const Slider = styled.span`
   transform: translateX(-${
   (props) => {
     const rotate = 900 * props.index;
-    const adjust = 900 * props.styleAdjust;
     return rotate - 430;
   }
 }px);
@@ -88,13 +87,13 @@ const ArrowRight = styled.div`
   z-index: 3;
 `;
 
-const MainCarousel = ({ name, styles, navRight, navLeft, index, direction, selected, styleAdjust }) => (
+const MainCarousel = ({ name, styles, navRight, navLeft, index, selected }) => (
   <MCWrapper>
     <Prod>{ name }</Prod>
     <LeftArrowWrapper onClick={navLeft}><ArrowLeft /></LeftArrowWrapper>
     <RightArrowWrapper onClick={navRight}><ArrowRight /></RightArrowWrapper>
     <Row>
-      <Slider index={index} direction={direction} styleAdjust={styleAdjust}>
+      <Slider index={index}>
         {styles.map((style) => <Item style={style} selected={selected} />)}
       </Slider>
     </Row>

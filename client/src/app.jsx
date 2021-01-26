@@ -23,7 +23,6 @@ class App extends React.Component {
       },
       items: [],
       index: 1,
-      styleAdjust: 0,
       numOfItems: 0,
       size: null,
       currentItemCopy: [],
@@ -52,9 +51,7 @@ class App extends React.Component {
           selected,
           items: items.data,
           index: 1,
-          styleAdjust: 0,
           numOfItems,
-          direction: null,
           clicked: false,
         });
       })
@@ -65,20 +62,18 @@ class App extends React.Component {
 
   navRight() {
     let {
-      currentItem, index, direction, clicked,
+      currentItem, index, clicked,
     } = this.state;
     clicked = false;
     const { styles } = currentItem;
-    let currentIndex = this.findSelectedIndex();
+    const currentIndex = this.findSelectedIndex();
     if (currentIndex > 3) {
       currentItem.styles = currentItem.styles.concat(styles);
     }
     index += 1;
-    direction = 'right';
     this.setState({
       index,
       currentItem,
-      direction,
       selected: styles[(index) % (styles.length)],
       clicked,
     });
@@ -86,7 +81,7 @@ class App extends React.Component {
 
   navLeft() {
     let {
-      currentItem, index, direction, selected, clicked,
+      currentItem, index, selected, clicked,
     } = this.state;
     const { styles } = currentItem;
     clicked = false;
@@ -100,7 +95,6 @@ class App extends React.Component {
     this.setState({
       currentItem,
       index,
-      direction,
       selected,
       clicked,
     });
@@ -119,7 +113,7 @@ class App extends React.Component {
   miniNav(i) {
     let { index, selected, clicked } = this.state;
     const { numOfItems, currentItem, currentItemCopy } = this.state;
-    let { styles } = currentItem;
+    const { styles } = currentItem;
     clicked = false;
     if (i > (index % numOfItems)) {
       index += (i - (index % numOfItems));
@@ -146,7 +140,7 @@ class App extends React.Component {
 
   render() {
     const {
-      currentItem, index, direction, selected, styleAdjust, clicked, size, currentItemCopy,
+      currentItem, index, selected, clicked, size, currentItemCopy,
     } = this.state;
     const { name, styles } = currentItem;
     return (
@@ -156,10 +150,8 @@ class App extends React.Component {
           styles={styles}
           selected={selected}
           index={index}
-          styleAdjust={styleAdjust}
           navRight={this.navRight}
           navLeft={this.navLeft}
-          direction={direction}
         />
         <MiniPreview
           currentItemCopy={currentItemCopy}
