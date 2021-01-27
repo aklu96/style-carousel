@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/api/items')
+    axios.get('/api/items')
       .then((items) => {
         let currentItem = items.data[0];
         const numOfItems = currentItem.styles.length;

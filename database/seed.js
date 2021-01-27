@@ -27,7 +27,7 @@ const seedDatabase = () => {
         url,
       };
     });
-    const product = new Model({ name, styles });
+    const product = new Model.Items({ name, styles });
     product.save((err) => {
       if (err) {
         console.log(err);

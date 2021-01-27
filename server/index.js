@@ -6,13 +6,13 @@ const controllers = require('./controllers');
 
 const app = express();
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
-const PORT = 3000;
+app.use(express.static(path.join(__dirname, '..', 'public')));
+const PORT = 3001;
 
 app.use(express.json());
 
 app.get('/api/items', controllers.getItems);
 
-app.post('/api/items/:styleName/:size', controllers.addToBag);
+app.post('/api/items/:styleName', controllers.addToBag);
 
 app.listen(PORT);

@@ -47,7 +47,7 @@ const SizeButton = styled.button`
   }
 `;
 
-const sizeText = styled.div`
+const SizeText = styled.div`
   color: black;
   font-family: 'Roboto', sans-serif;
   font-weight: bold 900;
@@ -99,7 +99,7 @@ const MiniPreview = ({ selected, miniNav, clicked, toggleClicked, currentItemCop
         {currentItemCopy.map((style, i) => <MinItem style={style} selected={selected} miniNav={miniNav} i={i} />)}
       </Row>
       <Row>
-        {sizes.map((size, i) => <SizeButton onclick={() => { chooseSize(i) }} size={size} i={i} ><sizeText>{sizes[i]}</sizeText></SizeButton>)}
+        {sizes.map((size, i) => <SizeButton onclick={() => { chooseSize(i) }} size={size} i={i} ><SizeText>{sizes[i]}</SizeText></SizeButton>)}
       </Row>
       <ATBWrapper><ATB onClick={toggleClicked}>{added}</ATB></ATBWrapper>
     </MinWrap>
