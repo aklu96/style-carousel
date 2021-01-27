@@ -50,6 +50,10 @@ const LeftArrowWrapper = styled.button`
   border-radius: 50%;
   z-index: 3;
   cursor: pointer;
+  transition: all 0.1s ease;
+  &:hover {
+    transform:scale(1.2);
+  }
 `;
 
 const RightArrowWrapper = styled.button`
@@ -67,6 +71,10 @@ const RightArrowWrapper = styled.button`
   border-radius: 50%;
   z-index: 3;
   cursor: pointer;
+  transition: all 0.1s ease;
+  &:hover {
+    transform:scale(1.2);
+  }
 `;
 
 const ArrowLeft = styled.div`
