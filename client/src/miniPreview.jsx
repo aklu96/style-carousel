@@ -71,6 +71,7 @@ const ATBWrapper = styled.div`
 const ATB = styled.button`
   width: 318px;
   height: 56px;
+  padding-bottom: 3px;
   border-radius: 30px;
   outline: none;
   background-color: #fa4616;

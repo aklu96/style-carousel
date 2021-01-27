@@ -12,7 +12,7 @@ const AWrap = styled.div`
   padding: 0;
   overflow: hidden;
   justify-content: space-between;
-  background-color: #F6F6F6;
+  
 `;
 class App extends React.Component {
   constructor(props) {
