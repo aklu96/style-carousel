@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -15,4 +16,6 @@ app.get('/api/items', controllers.getItems);
 
 app.post('/api/items/:styleName', controllers.addToBag);
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`Style carousel server running on port ${PORT}...`);
+});
