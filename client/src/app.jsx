@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import MainCarousel from './mainCarousel';
 import MiniPreview from './miniPreview';
 
-const PORT = 3001;
+const PORT = 3000;
 
 const AWrap = styled.div`
   display: flex;

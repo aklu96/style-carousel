@@ -31,7 +31,7 @@ const CheckMark = styled.div`
 const CheckWrapper = styled.button`
   display: flex;
   outline: none;
-  top: 118%;
+  top: 1187px;
   position: absolute;
   border-width: 0px;
   align-items: center;
