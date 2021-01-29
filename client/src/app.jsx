@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import MainCarousel from './mainCarousel';
 import MiniPreview from './miniPreview';
 
-const PORT = 3000;
-
 const AWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,7 +39,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:${PORT}/api/items`)
+    axios.get('/api/items')
       .then((items) => {
         let currentItem = items.data[0];
         const numOfItems = currentItem.styles.length;
